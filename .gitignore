@@ -1,0 +1,9 @@
+/customajaxfilters/admin/csvin.txt
+/customajaxfilters/admin/log.txt
+/customajaxfilters/admin/recsout.txt
+log.txt
+/customajaxfilters/majax/majaxwp/cache
+/customajaxfilters/majax/majaxwp/secret
+/customajaxfilters/settings
+secret-*
+/*.txt

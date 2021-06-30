@@ -1,0 +1,23 @@
+Thanks for submitting. We will contact you soon.^Díky za odeslání. Budeme vás brzy kontaktovat.^Vďaka za odoslanie. Budeme vás čoskoro kontaktovať.
+Name^Jméno^Meno
+Your message^Vaše zpráva^Vaša zprava
+Submit^Potvrdit^Potvrdiť
+Surname^Příjmení^Priezvisko
+Rental start date^Začátek pronájmu^Začiatok prenájmu
+Rental end date^Konec pronájmu^Koniec prenájmu
+Phone^Telefon^Telefon
+Expected mileage^Předpoklad najetých kilometrů^Predpoklad najazdených kilometrov
+Already our customer^Jste již naším firemním zákazníkem^Ste už naším firemným zákazníkom
+Required field^Povinné pole^Povinné pole
+Submit^Potvrdit^Potvrdiť
+If you need more information or are interested in renting a car for a longer period, please fill out the form below and we will contact you.^Pokud potřebujete více informací nebo se zajímáte o pronájem vozu na delší dobu, vyplňte prosím níže uvedený formulář a my vás budeme kontaktovat.^Ak potrebujete viac informácií alebo sa zaujímate o prenájom vozidla na dlhšiu dobu, vyplňte prosím nižšie uvedený formulár a my vás budeme kontaktovať.
+Order^Objednat^Objednať
+products by brands^produkty podle značek^produkty podľa značiek
+(all brands)^(všechny značky)^(všetky značky)
+(all categories)^(všechny kategorie)^(všetky kategórie)
+Sorry, no results found.^Bohužel, žádné výsledky nenalezeny.^Bohužiaľ, žiadne výsledky nenájdené.
+GET SPECIAL DISCOUNT^KOUPIT SE SLEVOU^KÚPIŤ SO ZĽAVOU
+Price^Cena^Cena
+Related items^Příbuzné položky^Súvisiace položky
+by^od^od
+More^Více^Viac

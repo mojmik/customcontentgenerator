@@ -1,0 +1,28 @@
+<div class='majaxout {mainClass} row2' id='majaxout{id}'>
+                    <div class='row mcontent mtitle'>			    
+                            <span>{title}</span>
+                        </div>
+                    <div class='row flex-grow-1'>
+                        <div class='col title '>                        
+                            {image}{featuredHtml}    
+								<a data-slug='{name}' href='{metaOut[buyurl]}'>{metaOut[imageurl]}</a>
+								<div class='price2'>
+									<span class='discount'>{metaOut[price]}</span>
+									<span class='priceTag'>{metaOut[priceDiscount]}</span>								
+								</div>                            
+                        </div>
+                    </div>
+                    <div class='row mcontent '>			    
+                        <span>{content}</span>
+                    </div>      
+                    <div class='row '>
+                            <div class='col action'>
+                                <a class='mButtonA' data-slug='{name}' href='{metaOut[buyurl]}'>_(Order)</a>
+							</div>
+                    </div>
+
+                    <div class='row '>			
+                            <div class='col meta'>od {metaOut[brand]}</div>  
+							<div class='col meta'>{metaOut[gtin]} {metaOut[mpn]}</div>     
+                    </div>                
+</div>

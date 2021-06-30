@@ -1,0 +1,35 @@
+<div class="mpagination">
+            <div class="row frameGray">
+                <div class="col-md-11 col-xs-12 mcent">
+                    <form id="majaxContactForm" data-group="staticForms" method="post">
+                                                <div class="row formGroup">
+                                                    <div class="col-sm-6">                                    
+                                                        <input type="text" class="form-control" id="fname" name="fname" placeholder="_(Name)">
+                                                    </div>
+                                                    <div class="col-sm-6">                                                                        
+                                                        <input type="text" class="form-control email" id="email" name="email" placeholder="Email*">
+                                                    </div>                                
+                                                </div>
+                                                <div class="row formGroup">                                                                                    
+                                                    <div class="col-sm-12">                                    
+                                                        <textarea class="form-control" id="txtmsg" name="msg" placeholder="_(Your message)*"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row formGroup">                                                                                    
+                                                    <div class="col-sm-12">
+                                                        anti-spam                                                                                            
+                                                        <div id="myCaptcha"></div>
+                                                    </div>
+                                                </div>                                                                                                
+                                                <div class="row3">	
+                                                        <div class="col-sm-3 pullRight col-xs-12">
+                                                            <input type="submit" class="btn btn-primary btn-block" name="submit" id="submit" value="_(Submit)">
+                                                                <input type="Button" class="btn btn-primary btn block" value="Processing.." id="divprocessing" style="display: none;">
+                                                        </div>
+                                                </div>                                                
+                                                {contactFormRequired}
+                                                
+                        </form>
+                    </div>
+                </div>
+            </div>

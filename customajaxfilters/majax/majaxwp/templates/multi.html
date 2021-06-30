@@ -1,0 +1,30 @@
+<div class='majaxout {mainClass}' id='majaxout{id}'>   
+						  
+                        <div class='row flex-grow-1 '>
+                            <div class='col title'>                        
+                                 {image}{featuredHtml}    
+								<a data-noajax='true' data-slug='{name}' href='/?id={name}'>{metaOut[imageurl]}</a>
+								<div class='price2'>
+									<span class='discount'>{metaOut[priceDiscount]}</span>
+									<span class='priceTag'>{metaOut[price]}</span>								
+								</div>
+                            </div>
+                        </div>
+						<div class='row mtitle'>			    
+                            <span>{title}</span>
+                        </div>  
+                        <div class='row mcontent mpad '>		
+						
+								{content}
+						
+                        </div>                   
+                        <div class='row mpad'>			
+                                _(by) {metaOut[brand]}
+                        </div>
+                        <div class='row '>
+                            <div class='col action'>
+                                <a data-noajax='true' class='mButtonA' data-slug='{name}' href='/?id={name}'>_(More)</a>
+                            </div>
+                        </div>
+						
+</div>

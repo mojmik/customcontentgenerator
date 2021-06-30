@@ -1,0 +1,78 @@
+.caf-editFieldRow {
+    display: flex;
+    min-width: 400px;
+    flex-wrap: wrap;
+    justify-content: stretch;                
+    background: #fff;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin:50px 0 0 0;    
+}
+.caf-editFieldRow:first-of-type {
+ margin:0px;
+}    
+.caf-editFieldRow>div {
+   width: 33%; 
+   align-self: flex-end;
+   margin-bottom:10px;
+}
+.caf-editFieldRow input {
+ width: 162px;
+}
+.caf-editFieldRow input[type=submit] {
+    width: 80px;
+}
+.caf-editFieldRow div label {
+    width: 200px;
+}
+.caf-editFieldRow .iconEdit {
+    width: 150px;
+    border: 1px solid #000;
+    padding: 5px;    
+    background: #fff;
+}
+/* loader */
+.majax-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    z-index: 10000; 
+    overflow: hidden;  
+    width: 100%;
+    /*
+    animation: hide 0.4s forwards;
+    animation-iteration-count: 10;
+    animation-delay: 100s;
+    */
+  }
+  .majax-loader-disappear-anim {
+    animation: hide 0.4s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+  }
+  .majax-loader svg {
+    animation: spin 0.5s linear infinite;
+  }
+  
+  @keyframes hide {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      z-index: -1;
+    }
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+.editCPT div {
+  width:100%;
+}

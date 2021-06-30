@@ -1,0 +1,77 @@
+<div class="mpagination">     
+	<div class="row frameGray">                        
+		<div class="col-md-12 col-xs-12 padding-rl-2">
+			<div class="row">
+				<div class="yellowBand" id="enquiryP">
+					_(If you need more information or are interested in renting a car for a longer period, please fill out the form below and we will contact you.)
+				</div>
+			</div>
+			<div class="col-md-12 col-xs-12 mcent">
+				<div class="row">
+					<div class="col-xs-12">
+						<p class="formhead">
+						
+						</p>								
+					</div>
+				</div>			
+				<form id="{name}" method="post">							
+					<div class="row formGroup">
+						<div class="col-sm-6">                                    
+							<input type="text" class="form-control" id="fname" name="fname" placeholder="_(Name)*">
+						</div>
+						<div class="col-sm-6">                                    
+							<input type="text" class="form-control" id="lname" name="lname" placeholder="_(Surname)*">
+						</div>
+					</div>
+					<div class="row formGroup">                                
+						<div class="col-sm-6">                                                                        
+							<input type="text" class="form-control email" id="email" name="email" placeholder="Email*">
+						</div>                                
+						<div class="col-sm-6">                                    
+							<input type="text" class="form-control email" id="remail" name="cemail" placeholder="Email*">
+						</div>
+					</div>
+					<div class="row formGroup">
+						<div class="col-sm-3">
+							<input type="text" class="form-control cal pointerEvent" id="pickDate" placeholder="_(Rental start date)*" name="start_date" readonly="readonly">
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control cal pointerEvent" id="dropDate" placeholder="_(Rental end date)*" name="end_date" readonly="readonly">
+						</div>
+						<div class="col-sm-6">
+							<input type="text" class="form-control tel" id="phone_no" name="phone_no" placeholder="_(Phone)*">
+						</div>
+					</div>
+					<div class="row formGroup">
+						<div class="col-sm-6">
+							<input type="text" class="form-control mileage" id="mileage" placeholder="_(Expected mileage)*" name="expected_mileage">
+						</div>
+						<div class="col-sm-6 p-spc-0">
+									<label for="business" id="leasing-for-leisure" class="leisLabel">
+										<input name="business" id="businessChBox" type="checkbox" class="leisCheck">
+										<em id="businessBox" class="sprite"></em>
+										_(Already our customer)*
+									</label>
+						</div>
+					</div>
+					<div class="row formGroup">                                                                                    
+									<div class="col-sm-12">
+										anti-spam                                    
+										<div id="myCaptcha"></div>
+									</div>
+					</div> 
+					<div class="row formGroup">
+						<div class="col-sm-12">* _(Required field)</div>
+					</div>                                 
+					<div class="row3">	
+							<div class="col-sm-3 pullRight col-xs-12">
+								<input type="submit" class="btn btn-primary btn-block" name="submit" id="submit" value="_(Submit)">
+									<input type="Button" class="btn btn-primary btn block" value="Processing.." id="divprocessing" style="display: none;">
+							</div>
+					</div>
+					{contactFormRequired}
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

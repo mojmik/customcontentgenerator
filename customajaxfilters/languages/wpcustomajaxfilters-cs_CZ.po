@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wpcustomajaxfilters\n"
+"POT-Creation-Date: 2021-06-25 19:03+0200\n"
+"PO-Revision-Date: 2021-06-25 19:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: m@ttj.cz\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e;_\n"
+"X-Poedit-SearchPath-0: admin\n"
+"X-Poedit-SearchPath-1: majax/majaxwp\n"
+"X-Poedit-SearchPath-2: majax/majaxwp/templates\n"
+"X-Poedit-SearchPath-3: majax/majaxwp/templates\n"
+
+#: admin/autacustompost.php:60
+msgid " - "
+msgstr ""
+
+#: admin/autacustompost.php:61
+msgid "Parent"
+msgstr "Rodič"
+
+#: admin/autacustompost.php:62
+msgid "All"
+msgstr "Vše"
+
+#: admin/autacustompost.php:63
+msgid "Show"
+msgstr "Zobrazit"
+
+#: admin/autacustompost.php:64 admin/autacustompost.php:65
+msgid "Add"
+msgstr "Přidat"
+
+#: admin/autacustompost.php:66
+msgid "Edit"
+msgstr "Upravit"
+
+#: admin/autacustompost.php:67
+msgid "Update"
+msgstr "Aktualizovat"
+
+#: admin/autacustompost.php:68 admin/cjtools.php:544
+msgid "Find"
+msgstr "Najít"
+
+#: admin/autacustompost.php:69
+msgid "Not found"
+msgstr "Nenalezeno"
+
+#: admin/autacustompost.php:70
+msgid "Not found in trash"
+msgstr "Nenalezeno v koši"
+
+#: admin/autacustompost.php:77
+msgid "in stock"
+msgstr "skladem"
+
+#: admin/autacustompost.php:291
+msgid "remove all"
+msgstr "odstranit vše"
+
+#: admin/autafields.php:156
+msgid "Add another"
+msgstr "Přidat další"
+
+#: admin/cjtools.php:499
+msgid "Also"
+msgstr "Dále třeba"
+
+#: admin/cjtools.php:544
+msgid "Enjoy"
+msgstr "Užijte si"
+
+#: admin/cjtools.php:544
+msgid "Choose- "
+msgstr "Vyberte si- "
+
+#: admin/cjtools.php:544
+msgid "Shop- "
+msgstr "Nakupujte- "
+
+#: admin/cjtools.php:544
+msgid "Eshops with"
+msgstr "Eshopy nabízející"
+
+#: admin/cjtools.php:544
+msgid "Shops with"
+msgstr "Obchody, kde najdete"
+
+#: admin/cjtools.php:549
+msgid "more than"
+msgstr "více než"
+
+#: admin/cjtools.php:549
+msgid "over"
+msgstr "víc jak"
+
+#: admin/cjtools.php:550
+msgid "products"
+msgstr "produktů"
+
+#: admin/cjtools.php:550
+msgid "offers"
+msgstr "nabídek"
+
+#: admin/cjtools.php:550
+msgid "sales"
+msgstr "zlevněných položek"
+
+#: admin/cjtools.php:569
+msgid "and other brands"
+msgstr "a dalších značek"
+
+#: admin/cjtools.php:569
+msgid "and other producers"
+msgstr "a dalších výrobců"
+
+#: admin/cjtools.php:570
+msgid "by"
+msgstr "od"
