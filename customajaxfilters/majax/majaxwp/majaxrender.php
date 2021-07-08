@@ -43,6 +43,7 @@ Class MajaxRender {
 			$this->customPostType=$this->loaderParams["customPostType"];
 			$this->majaxQuery=$this->loaderParams["majaxQuery"];				
 			$this->fields=$this->loaderParams["fields"];			
+			$this->fixFilters=$this->loaderParams["fixFilters"];	
 	}
 
 	public function getMajaxQuery() {
@@ -96,7 +97,6 @@ Class MajaxRender {
 			$n++;
 			$metaMisc=$this->buildInit();
 			$item=[];
-			//$row["mauta_cj_imageurl"]=str_replace("/mimgtools/","/mimgtools.php?mimgtools=",$row["mauta_cj_imageurl"]);
 			$item=$this->buildItem($row,[],0,$excerpt);	
 			$this->htmlElements->showPost("s$n",$row["post_name"],$row["post_title"],$item["image"],$item["content"],$metaMisc["misc"],$item["meta"],$templateName);
 		}
@@ -387,10 +387,10 @@ Class MajaxRender {
 		?>
 		<form role="search" method="get" class="search-form" action="<?= $actual_link?>">
 				<label>
-					<span class="screen-reader-text">Vyhledávání</span>
-					<input type="search" class="search-field" placeholder="Hledat …" value="<?= $lastSearch?>" name="mSearch">					
+					<span class="screen-reader-text"><?= __("Search",CAF_TEXTDOMAIN)?></span>
+					<input type="search" class="search-field" placeholder="<?= __("Search",CAF_TEXTDOMAIN)?> …" value="<?= $lastSearch?>" name="mSearch">					
 				</label>
-				<input type="submit" class="search-submit" value="Hledat">
+				<input type="submit" class="search-submit" value="<?= __("Search",CAF_TEXTDOMAIN)?>">
 		</form>
 		<?php
 	}

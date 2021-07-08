@@ -38,21 +38,12 @@ class CJtools {
         $this->customPostType=$postType;  
     }
 
-    public function updateImage($content, $id) {
-        preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $content, $matches);
-        $imgSrc = $matches[1];
-        $content = str_replace($imgSrc, "/mimgtools.php?id=$id", $content);
-        $content = str_replace("'", "''", $content);
-        $fn = wp_get_upload_dir()["basedir"]."/mimgnfo-$id";
-        file_put_contents($fn, $imgSrc);
-        return $content;
-    }
    
     function mReplText($description) {
         if (!array_key_exists("loaded",$this->replacements)) {
             $txt = Settings:: loadSetting("replacements", "cj");
-            if ($txt) {
-               $rowsOut=[];
+            $rowsOut=[];
+            if ($txt) {               
                $rows=explode("\n",$txt);
                foreach ($rows as $r) {                   
                    $r=explode("|",str_replace("\"","",$r));
@@ -146,17 +137,15 @@ class CJtools {
             $r[$key] = str_replace("^^^", "'", $r[$key]); 
             $r[$key] = str_replace("'", "''", $r[$key]); 
 
-            $buyurl = $r["buyurl"];
-            
             $r["imageurl"] = str_replace("http://", "https://", $r["imageurl"]);            
-            if (!empty($r["imageurl"])) {                
+            $useMimgTools=Settings::loadSetting("mImgTools-".$this->customPostType,"cptsettings");
+            if ($useMimgTools && !empty($r["imageurl"])) {                
                 $id=md5($r["imageurl"]);
-                $fn=wp_get_upload_dir()["basedir"]."/mimgnfo-$id";
+                $fn=CAF_PLUGIN_PATH."/customajaxfilters/majax/majaxwp/mimg/mimgnfo-$id";
                 file_put_contents($fn,$r["imageurl"]); 
                 $r["imageurl"] = "/mimgtools/$id/";                            
             }
             
-            //$imageHtml = "<a title='".$titleSafe."' href='$buyurl' rel='nofollow'><img alt='".$titleSafe."' width=300 src='{$r["imageurl"]}' /></a>";
             $imageHtml = "<img alt='".$titleSafe."' src='{$r["imageurl"]}' />";
             $r["imageurl"] = $imageHtml;
             
@@ -177,13 +166,15 @@ class CJtools {
             $postArr["post_status"] = "publish";
             $postArr["post_content"] = $r["description"];
             $postArr["post_type"] = $this->customPostType;
-            $postId = wp_insert_post($postArr);
+            
             if ($dedicatedTable) {
                 $row=[
                     "post_title" => $r["title"], 
                     "post_name" => sanitize_title($r["title"]), 
                     "post_content" => $r["description"]
                 ];
+            } else {
+                $postId = wp_insert_post($postArr);
             }
             //echo json_encode(["result"=> "inserted {$postArr["post_title"]} $postId"]).PHP_EOL;
 
@@ -205,17 +196,23 @@ class CJtools {
                 if (!empty($extras[$name]["createSlug"])) {                    
                     $metaValue = $this->sanitizePath($metaValue);
                     $metaValue=$this->stripCategories($metaValue);
-                    $metaValueSlug = $this->sanitizeSlug($metaValue);
-                    add_post_meta($postId, $name, $metaValueSlug);
-                    if ($dedicatedTable) $row[$name]=$metaValueSlug;
+                    $metaValueSlug = $this->sanitizeSlug($metaValue);                    
+                    if ($dedicatedTable) { 
+                        $row[$name]=$metaValueSlug;
+                    } else {
+                        add_post_meta($postId, $name, $metaValueSlug);
+                    }
                     $terms[$metaValueSlug] = $metaValue;
                     $createMeta=false;
                 }
                 if (!empty($extras[$name]["noImport"])) $createMeta=false;
                 
-                if (isset($metaValue) && $createMeta) {
-                    add_post_meta($postId, $name, $metaValue);
-                    if ($dedicatedTable) $row[$name]=$metaValue;
+                if (isset($metaValue) && $createMeta) {                    
+                    if ($dedicatedTable) { 
+                        $row[$name]=$metaValue;
+                    } else {
+                        add_post_meta($postId, $name, $metaValue);
+                    }
                 }
             }
             if ($dedicatedTable) { 

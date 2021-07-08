@@ -9,7 +9,8 @@ class Settings {
             "language" => ["desc" => "language of the site"], 
             "currencyFormat" => ["default" => "$%1", "desc" => "currency format used for prices"], 
             "clickAction" => ["default" => "none","desc" => "link action- form for form, any other value for standard"],
-            "buildCounts" => ["desc" => "set when form with items counts are to be displayed (not recommended for big sites with many items)"]
+            "buildCounts" => ["type"=> "checkbox", "desc" => "set when form with items counts are to be displayed (not recommended for big sites with many items)"],
+            "mImgTools" => ["type"=> "checkbox", "desc" => "enable mImgTools (changes htaccess file)"]
         ],
       "secret" => [          
           "captchasecret" => ["desc" => "captcha secret key for antispam in forms"],
@@ -29,8 +30,8 @@ class Settings {
     }
     static function loadSetting($file,$type,$isArray=false) {     
         $key=Settings::getSettingKey($type,$file);	 	 
-        if (!array_key_exists($key,Settings::$settings)) {
-            Settings::$settings[$key]=@file_get_contents(Settings::getPath("$key.txt"));       
+        if (!array_key_exists($key,Settings::$settings)) {            
+            Settings::$settings[$key]=@file_get_contents(Settings::getPath("$key.txt"));                   
         }
         if (empty(Settings::$settings[$key])) {
             if (!empty(Settings::$settingsMap[$type][$file]["default"])) Settings::$settings[$key]=Settings::$settingsMap[$type][$file]["default"];
@@ -60,10 +61,12 @@ class Settings {
 		}		
 		foreach (Settings::$settingsMap as $settingsType => $settingsSet) {
             foreach ($settingsSet as $aKey => $setting) {
+                $type=(!empty($setting["type"])) ?  $setting["type"] : "";
                 if (is_array($setting)) $setting=$aKey;               
                 $key=Settings::getSettingKey($settingsType,$setting);	 			
                 $val=filter_input( INPUT_POST, $key, FILTER_SANITIZE_STRING );  
                 if (isset($val)) {
+                    if ($type=="checkbox" && $val=="0") $val="";
                     $sql = $wpdb->prepare("DELETE FROM `$table` WHERE `opt` like '%s'",$key);
                     $wpdb->query($sql);
                     $sql = $wpdb->prepare("INSERT INTO `$table` (`opt`, `val`) values (%s,%s)",$key,$val);				
@@ -99,11 +102,26 @@ class Settings {
                 if (!empty($setting["hide"])) continue;
                 if (!empty($setting["desc"])) $desc.="<li>".$setting["desc"]."</li>";
                 if (!empty($setting["default"])) $desc.="<li>(default: ".$setting["default"].")</li>";
+                $type=(!empty($setting["type"])) ?  $setting["type"] : "";
                 if (is_array($setting)) $setting=$key;
                 $settingKey=Settings::getSettingKey($settingsType,$setting);	
                 $settingValue=(empty(Settings::$settings[$settingKey]) ? "" : Settings::$settings[$settingKey]);
                 ?>
-                    <div><div><label><?= $setting?><br /><ul style='font-size:smaller;'><?= $desc?></ul></label></div><input type='text' name='<?= $settingKey?>' value='<?= $settingValue?>' /></div>	
+                    <div>
+                        <div><label><?= $setting?><br /><ul style='font-size:smaller;'><?= $desc?></ul></label></div>
+                        <?php
+                        if ($type=="checkbox") {
+                            ?>  
+                                <input type='hidden' value='0' name='<?= $settingKey?>'>
+                                <input type='checkbox' name='<?= $settingKey?>' <?= ($settingValue=="1") ? "value='1' checked='checked'" : "" ?> />
+                            <?php 
+                        } else {
+                            ?>                        
+                                <input type='text' name='<?= $settingKey?>' value='<?= $settingValue?>' />
+                            <?php
+                        }
+                        ?>
+                    </div>	
                 <?php
             }
             ?>

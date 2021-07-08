@@ -642,12 +642,10 @@ h1 {
 }
 
 #mainnav ul li a {
-  color: #4e355e;
-  font-weight: 700;
+  color: #000;
 }
 #mainnav ul li a:hover {
-  color: #4e355e;
-  font-weight: 700;
+  color: #000;
 }
 
 #mainnav .sub-menu li a {

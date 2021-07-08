@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wpcustomajaxfilters\n"
-"POT-Creation-Date: 2021-06-25 19:03+0200\n"
-"PO-Revision-Date: 2021-06-25 19:07+0200\n"
+"POT-Creation-Date: 2021-07-08 16:30+0200\n"
+"PO-Revision-Date: 2021-07-08 16:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: m@ttj.cz\n"
 "Language: cs_CZ\n"
@@ -46,7 +46,7 @@ msgstr "Upravit"
 msgid "Update"
 msgstr "Aktualizovat"
 
-#: admin/autacustompost.php:68 admin/cjtools.php:544
+#: admin/autacustompost.php:68 admin/cjtools.php:504
 msgid "Find"
 msgstr "Najít"
 
@@ -62,66 +62,154 @@ msgstr "Nenalezeno v koši"
 msgid "in stock"
 msgstr "skladem"
 
-#: admin/autacustompost.php:291
+#: admin/autacustompost.php:275
+msgid "Process"
+msgstr "Zpracovat"
+
+#: admin/autacustompost.php:300
+msgid "csv import"
+msgstr "csv import"
+
+#: admin/autacustompost.php:300
+msgid "import csv file"
+msgstr "importovat csv soubor"
+
+#: admin/autacustompost.php:301
+msgid "csv bulk import"
+msgstr "csv hromadný import"
+
+#: admin/autacustompost.php:301
+msgid "import csv files uploaded by ftp"
+msgstr "importovat soubory nahrané přes ftp"
+
+#: admin/autacustompost.php:306
+msgid "cj csv import"
+msgstr "importovat cj csv"
+
+#: admin/autacustompost.php:306
+msgid "import cj csv file"
+msgstr "importovat cj csv soubor"
+
+#: admin/autacustompost.php:307
+msgid "remove cj tables"
+msgstr "odstranit všechny tabulky"
+
+#: admin/autacustompost.php:307
+msgid "drop tables for cj fields and categories"
+msgstr "zahodit tabulky cj polí a kategorií"
+
+#: admin/autacustompost.php:308
+msgid "create pages"
+msgstr "vytvořit stránky"
+
+#: admin/autacustompost.php:308
+msgid "create random pages from posts"
+msgstr "vytvořit náhodné stránky pro příspěvky"
+
+#: admin/autacustompost.php:309
+msgid "cj cats description and counts"
+msgstr "cj popisy kategorií a počty"
+
+#: admin/autacustompost.php:309
+msgid "create description and counts for categories"
+msgstr "vytvoření popisů a počtů v kategoriích"
+
+#: admin/autacustompost.php:312
 msgid "remove all"
 msgstr "odstranit vše"
+
+#: admin/autacustompost.php:312
+msgid "remove all posts of this type"
+msgstr "odstranit všechny příspěvky podle typu"
 
 #: admin/autafields.php:156
 msgid "Add another"
 msgstr "Přidat další"
 
-#: admin/cjtools.php:499
+#: admin/cjpages.php:21
+msgid "Online shopping for"
+msgstr "Nakupujte online"
+
+#: admin/cjpages.php:22
+msgid "with great number of products and special prices"
+msgstr "s obrovským výběrem produktů a speciálními cenami"
+
+#: admin/cjpages.php:23
+msgid "Offered by famous brands like"
+msgstr "Od známých značek jako"
+
+#: admin/cjpages.php:24
+msgid "and many more products"
+msgstr "a mnoho dalších položek"
+
+#: admin/cjpages.php:25
+msgid "For instance"
+msgstr "Třeba"
+
+#: admin/cjpages.php:26
+msgid "under "
+msgstr "za méně než "
+
+#: admin/cjtools.php:459
 msgid "Also"
 msgstr "Dále třeba"
 
-#: admin/cjtools.php:544
+#: admin/cjtools.php:504
 msgid "Enjoy"
 msgstr "Užijte si"
 
-#: admin/cjtools.php:544
+#: admin/cjtools.php:504
 msgid "Choose- "
 msgstr "Vyberte si- "
 
-#: admin/cjtools.php:544
+#: admin/cjtools.php:504
 msgid "Shop- "
 msgstr "Nakupujte- "
 
-#: admin/cjtools.php:544
+#: admin/cjtools.php:504
 msgid "Eshops with"
 msgstr "Eshopy nabízející"
 
-#: admin/cjtools.php:544
+#: admin/cjtools.php:504
 msgid "Shops with"
 msgstr "Obchody, kde najdete"
 
-#: admin/cjtools.php:549
+#: admin/cjtools.php:509
 msgid "more than"
 msgstr "více než"
 
-#: admin/cjtools.php:549
+#: admin/cjtools.php:509
 msgid "over"
 msgstr "víc jak"
 
-#: admin/cjtools.php:550
+#: admin/cjtools.php:510
 msgid "products"
 msgstr "produktů"
 
-#: admin/cjtools.php:550
+#: admin/cjtools.php:510
 msgid "offers"
 msgstr "nabídek"
 
-#: admin/cjtools.php:550
+#: admin/cjtools.php:510
 msgid "sales"
 msgstr "zlevněných položek"
 
-#: admin/cjtools.php:569
+#: admin/cjtools.php:529
 msgid "and other brands"
 msgstr "a dalších značek"
 
-#: admin/cjtools.php:569
+#: admin/cjtools.php:529
 msgid "and other producers"
 msgstr "a dalších výrobců"
 
-#: admin/cjtools.php:570
+#: admin/cjtools.php:530
 msgid "by"
 msgstr "od"
+
+#: majax/majaxwp/majaxrender.php:389 majax/majaxwp/majaxrender.php:390
+#: majax/majaxwp/majaxrender.php:392
+msgid "Search"
+msgstr "Hledat"
+
+#~ msgid "such as"
+#~ msgstr "jako třeba"

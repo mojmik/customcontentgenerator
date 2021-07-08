@@ -9,6 +9,10 @@ class Loader {
         //translations
         add_action('init', [$this,"globalInit"]);
 
+        $baseName=plugin_basename(__FILE__);
+        $currentScript=basename(__FILE__);
+        define('CAF_RELPATH_MAIN',str_replace($currentScript,"",$baseName));        
+
         $cjActive=true;
 		if ($cjActive)	{
 
@@ -23,7 +27,8 @@ class Loader {
 		}
     }
     public function globalInit() {
-        load_plugin_textdomain( CAF_TEXTDOMAIN, false, CAF_PLUGIN_PATH.'/customajaxfilters/languages' );
+        //load_plugin_textdomain( CAF_TEXTDOMAIN, false, CAF_PLUGIN_PATH.'/customajaxfilters/languages' );
+        load_plugin_textdomain( CAF_TEXTDOMAIN, false, CAF_RELPATH_MAIN.'languages' );
     }
     public function initAdmin() {
         $mautawp=new Admin\AutaPlugin(); 

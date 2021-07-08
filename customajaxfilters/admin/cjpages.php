@@ -18,12 +18,12 @@ class CJpages {
         $childPages=[];        
         $currencyFormat=$this->cjTools->getParams("currencyFormat");
 
-        $text[1] = __("Online shopping for");
-        $text[2] = __("with great number of products and special prices");
-        $text[3] = __("Offered by famous brands like");
-        $text[4] = __("and many more products");
-        $text[5] = __("such as");
-        $text[6] = __("under ");        
+        $text[1] = __("Online shopping for",CAF_TEXTDOMAIN);
+        $text[2] = __("with great number of products and special prices",CAF_TEXTDOMAIN);
+        $text[3] = __("Offered by famous brands like",CAF_TEXTDOMAIN);
+        $text[4] = __("and many more products",CAF_TEXTDOMAIN);
+        $text[5] = __("For instance",CAF_TEXTDOMAIN);
+        $text[6] = __("under ",CAF_TEXTDOMAIN);        
 
         //vzit kategorie, ktery maji pres 100 postu
         $createdCatPages = 0;
@@ -115,12 +115,8 @@ class CJpages {
                     'post_type' => 'page'
                 );
                 $parentExistuje = get_page_by_title($parentTitle);
-                if ($parentExistuje) {
-                    echo "<br />stranka uz existuje, preskakuju";
+                if ($parentExistuje) {                    
                     continue;
-                }
-                else {
-                    echo "<br />stranka neexistuje, vytvarim";
                 }
 
                 $parentId = wp_insert_post($post_details);
@@ -133,24 +129,26 @@ class CJpages {
                         if ($b > 0) $brandy.= ", ";
                         $brandy.= $vendors[$c][$b];
                     }
-                    if ($brandy) $brandy = ". ".$text[3]." $brandy.";
+                    if ($brandy) $brandy = " ".$text[3]." $brandy.";
                     $under = " ".$text[6].Mutils::formatField($cenaArrB[$c],$currencyFormat);
                     $pageTitle = $terms[$n]["path"].$under;
                     $priceFrom = 0;
                     if ($c > 0) $priceFrom = $cenaArrB[$c - 1];
                     $priceTo = $cenaArrB[$c];
                     $addContent = $this->getAddContent($terms[$n]["slug"]."%", $priceFrom, $priceTo);
-                    if ($postsTitles[$c]) $postsTitles[$c] = "<p><strong>".$terms[$n]["path"]."</strong> $brandy ".$text[5]." ".$postsTitles[$c]." ..".$text[4].$under."</p>".$addContent;
-                    $post_details = array(
-                        'post_title'    => $pageTitle,
-                        'post_content'  => $postsTitles[$c],
-                        'post_status'   => 'publish',
-                        'post_author'   => 1,
-                        'post_parent'   => $parentId,
-                        'post_type' => 'page'
-                    );
-                    $childId = wp_insert_post($post_details);
-                    $childPages[]=["id" => $childId, "title" => $pageTitle, "parent" => $parentId];
+                    if ($postsTitles[$c]) {
+                        $postsTitles[$c] = "<p><strong>".$terms[$n]["path"]."</strong> $brandy ".$text[5]." ".$postsTitles[$c]." ..".$text[4].$under."</p>".$addContent;
+                        $post_details = array(
+                            'post_title'    => $pageTitle,
+                            'post_content'  => $postsTitles[$c],
+                            'post_status'   => 'publish',
+                            'post_author'   => 1,
+                            'post_parent'   => $parentId,
+                            'post_type' => 'page'
+                        );
+                        $childId = wp_insert_post($post_details);
+                        $childPages[]=["id" => $childId, "title" => $pageTitle, "parent" => $parentId];
+                    }
                     //insertSpecPagesInfo($childId,$pageTitle,$parentId,$cntPosts);
                 }
             }
@@ -165,7 +163,7 @@ class CJpages {
         }
         */
         //vzit ceny
-        echo "done createcatpages";
+        echo "<br />done createcatpages";
     }
     function getAddContent($taxSlug,$priceFrom=0,$priceTo=0) {   
         /* 

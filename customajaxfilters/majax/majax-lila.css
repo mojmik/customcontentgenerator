@@ -600,6 +600,9 @@ button.select2-selection__clear {
   margin-top:auto;
   margin-bottom: auto;
 }
+.catTitle img,.title img {
+  width:300px;
+}
 .page-wrap {
   padding:10px 0 10px 0;
 }

@@ -8,13 +8,14 @@ Class MimgTools {
 		$p=strpos($url,"mimgtools/");
 		
 		if ($p!==false) {
-			$url=substr($url,$p+strlen("mimgtools/"),-1);
+			$url=substr($url,$p+strlen("mimgtools/"),-1);			
 			MimgTools::prepImage($url);	
 		} 
 	}
 	static function streamImage($fileName) {
 		$type = 'image/jpeg';
-		header('Content-Type:'.$type);
+		//header('Content-Type: application/force-download');
+		header('Content-Type:'.$type);				
 		header('Content-Length: ' . filesize($fileName));
 		readfile($fileName);		
 	}
@@ -22,19 +23,34 @@ Class MimgTools {
 		//no htaccess or mimgmain in root dir
 		//$uploadsPath="./wp-content/uploads";
 
+		//mimgmain in uploads dir
+		//$uploadsPath="../../../../../uploads/";		
+
 		//mimgmain in plugin dir
-		$uploadsPath="../../../../../uploads/";		
+		$uploadsPath="./mimg";	
+
+		if (isset($_REQUEST["debug"])) {
+			if ($handle = opendir($uploadsPath)) {
+				while (false !== ($entry = readdir($handle))) {
+					if ($entry != "." && $entry != "..") {
+						echo "$entry\n";
+					}
+				}
+				closedir($handle);
+			}
+			exit;
+		}
 		
 		if (!$postId) return "";
 		$filenameNfo = "$uploadsPath/mimgnfo-$postId";
-		$filenameImg = "$uploadsPath/mimg2-$postId.jpg";		
+		$filenameImg = "$uploadsPath/mimg2-$postId.jpg";				
 		if (file_exists($filenameImg)) {
-			//already have image
+			//already have image			
 			MimgTools::streamImage($filenameImg);
 			die();
 		}
 
-		if (file_exists($filenameNfo)) {
+		if (file_exists($filenameNfo)) {			
 			$url=file_get_contents($filenameNfo);		
 			$image = ImageCreateFromString(file_get_contents($url));  
 			if ($image) {
@@ -52,7 +68,7 @@ Class MimgTools {
 				MimgTools::streamImage($filenameImg);
 				die();
 			}
-		}
+		}		
 		die();		
 	}
 

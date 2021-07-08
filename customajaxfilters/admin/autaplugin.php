@@ -158,6 +158,7 @@ class AutaPlugin {
 		$slug=filter_input( INPUT_POST, "slug", FILTER_SANITIZE_STRING );  		
 		$specialType=(isset($_POST["specialType"])) ? "cj" : "";		
 		$tableType=(isset($_POST["tableType"])) ? "dedicated" : "";
+		$mImgTools=(isset($_POST["mImgTools"])) ? "1" : "";
 		if (isset($_POST["cafActionEdit"])) {
 			$wpdb->update(AutaPlugin::getTable("main"), array('singular' => $singular, 'plural' => $plural, 'specialType' => $specialType, 'tableType' => $tableType), array('slug' => $slug) );
 			foreach ($this->customPost as $cpt ) {
@@ -166,8 +167,9 @@ class AutaPlugin {
 					$cpt->plural=$plural;					  
 					$cpt->specialType=$specialType;	
 					$cpt->tableType=$tableType;	
+					Settings::writeSetting("cptsettings-mImgTools-".$slug,$mImgTools);					
 				}
-			}
+			}		
 		}
 		if (isset($_POST["cafActionRemove"])) {
 			$wpdb->delete( AutaPlugin::getTable("main"), array( 'slug' => $slug ) );			

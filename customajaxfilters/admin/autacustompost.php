@@ -122,6 +122,7 @@ class AutaCustomPost {
 			";
 			$result = $wpdb->get_results($query);  
 		}
+		MajaxWP\Caching::pruneCache(true,$this->customPostType);
 	}	
 	function importCSVprocAjax() {
 		$do=filter_input( INPUT_POST, "doajax", FILTER_SANITIZE_STRING );
@@ -132,8 +133,7 @@ class AutaCustomPost {
 		if ($do=="makeposts") {
 			$extras=[];
 			$importCSV=new ImportCSV($this->customPostType);	
-			if ($type=="cjcsv") {
-				
+			if ($this->isCj) {				
 				$extras=$this->cj->getFieldsExtras();										
 				$this->cj->getCJtools()->setParam("tableName",$tabName);									
 				$this->cj->getCJtools()->createPostsFromTable($this->autaFields->getList(),$from,$to,$extras);
@@ -275,7 +275,7 @@ class AutaCustomPost {
 							<input style='width:100px;' type='submit' value='<?= __("Process",CAF_TEXTDOMAIN)?>' />
 							<span style="width:60%;"><?= basename($fn)?></span>
 							<input data-fn='csvbulkfn' type='hidden' name='file<?= $n?>' value='<?= $fn?>' />														
-							<span style='width:200px;' data-fn='statuscsvbulk-file<?= $n?>' ></span>
+							<span style='font-weight:700; width:200px;' data-fn='statuscsvbulk-file<?= $n?>' ></span>
 						</div>
 					</form>
 					<?php
@@ -298,19 +298,18 @@ class AutaCustomPost {
 	function csvMenu() {
 		$setUrl = [	
 			[__("csv import",CAF_TEXTDOMAIN),add_query_arg( 'do', 'csv'),__("import csv file",CAF_TEXTDOMAIN)],			
-			[__("csv bulk import",CAF_TEXTDOMAIN),add_query_arg( 'do', 'csvbulkimport'),__("import csv files uploaded by ftp",CAF_TEXTDOMAIN)],						
-			[__("remove all",CAF_TEXTDOMAIN),add_query_arg( 'do', 'removeall'),__("remove all posts of this type",CAF_TEXTDOMAIN)]												
+			[__("csv bulk import",CAF_TEXTDOMAIN),add_query_arg( 'do', 'csvbulkimport'),__("import csv files uploaded by ftp",CAF_TEXTDOMAIN)]								
 		];
 		//$setUrl[]=["dedicated tables debug",add_query_arg( 'do', 'creatededicatedtable'),"create dedicated table from posts debug (for huge sites)"],			
 		if ($this->isCj) {
 			array_push($setUrl,
-				[__("cj csv import",CAF_TEXTDOMAIN),add_query_arg( 'do', 'cjcsv'),__("import cj csv file",CAF_TEXTDOMAIN)],
-				[__("remove cj tables",CAF_TEXTDOMAIN),add_query_arg( 'do', 'removeexttables'),__("drop tables for cj fields and categories",CAF_TEXTDOMAIN)],
+				[__("cj csv import",CAF_TEXTDOMAIN),add_query_arg( 'do', 'cjcsv'),__("import cj csv file",CAF_TEXTDOMAIN)],				
+				[__("cj cats description and counts",CAF_TEXTDOMAIN),add_query_arg( 'do', ''),__("create description and counts for categories",CAF_TEXTDOMAIN), "catdescajax"],
 				[__("create pages",CAF_TEXTDOMAIN),add_query_arg( 'do', 'createcatpages'),__("create random pages from posts",CAF_TEXTDOMAIN)],
-				[__("cj cats description and counts",CAF_TEXTDOMAIN),add_query_arg( 'do', ''),__("create description and counts for categories",CAF_TEXTDOMAIN), "catdescajax"]
+				[__("remove cj tables",CAF_TEXTDOMAIN),add_query_arg( 'do', 'removeexttables'),__("drop tables for cj fields and categories",CAF_TEXTDOMAIN)]
 				);				
-
 		} 
+		array_push($setUrl,[__("remove all",CAF_TEXTDOMAIN),add_query_arg( 'do', 'removeall'),__("remove all posts of this type",CAF_TEXTDOMAIN)]);
 		
 		?>
 		<h1>CSV options</h1>
@@ -444,19 +443,24 @@ class AutaCustomPost {
 	}	
 	function editCptHtml() {
 		//checked='checked'
+		$this->mImgTools=Settings::loadSetting("mImgTools-".$this->customPostType,"cptsettings");		
 		?>
-			<form id="mAutaEdit<?= $this->getCustomPostType();?>" method='post' class='caf-editFieldRow editCPT'>
+		<div class='caf-editFieldRow'>
+			<form id="mAutaEdit<?= $this->getCustomPostType();?>" method='post' class='caf-editFieldRow caf-noborder editCPT'>
 				<div><div><label>singular name</label></div><input type='text' name='singular' value='<?= $this->singular?>' /></div>	
 				<div><div><label>plural name</label></div><input type='text' name='plural' value='<?= $this->plural?>' /></div>
-				<div><div><label>is comission junction?</label></div><input name='specialType' type='checkbox' <?= ($this->specialType=="cj" ? "value='1' checked='checked'" : "")?> /></div>
-				<div><div><label>dedicated table?</label></div><input name='tableType' type='checkbox' <?= ($this->tableType=="dedicated" ? "value='1' checked='checked'" : "")?> /></div>				
+				<div><div><label>is comission junction? *</label></div><input name='specialType' type='checkbox' <?= ($this->specialType=="cj" ? "value='1' checked='checked'" : "")?> /></div>
+				<div><div><label>dedicated table? *</label></div><input name='tableType' type='checkbox' <?= ($this->tableType=="dedicated" ? "value='1' checked='checked'" : "")?> /></div>				
+				<div><div><label>mImgTools? *</label></div><input name='mImgTools' type='checkbox' <?= ($this->mImgTools ? "value='1' checked='checked'" : "")?> /></div>				
 				<div><input name='cafActionEdit' type='submit' value='Edit' /></div>
 				<input name='slug' type='hidden' value='<?= $this->getCustomPostType();?>' />
+				* premium only
 			</form>
-			<form method='post' class='removeCPT'>
+			<form method='post' class='caf-editFieldRow caf-noborder removeCPT'>
 				<input name='cafActionRemove' type='submit' value='Remove' />
 				<input name='slug' type='hidden' value='<?= $this->getCustomPostType();?>' />
 			</form>			
+		</div>	
 			<?php
 	}
 

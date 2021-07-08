@@ -159,6 +159,23 @@ class ComissionJunction {
     add_filter( 'query_vars', [$this,'mautacj_query_vars'] );
     add_action('init', [$this,'mauta_rewrite_rule'], 10, 0);
     add_filter( 'redirect_canonical', [$this,'disable_canonical_redirect_for_front_page'] );
+    add_filter('mod_rewrite_rules', [$this,'modifyHtaccess'] );
+  }
+  function modifyHtaccess($rules) {    
+    $mainRule="RewriteRule ^index\.php$ - [L]";
+    $new_rules = "RewriteRule ^mimgtools/(.*)$ /wp-content/plugins/".CAF_RELPATH_MAIN."majax/majaxwp/mimgmain.php?url=$1 [L,QSA]\n";
+    $mImgTools=Settings::loadSetting("mImgTools","site");	
+    if (empty($mImgTools)) {
+        if (strpos($rules,"mimgtools")!==false) {
+            return str_replace($new_rules,"",$rules);  //remove custom rule
+        } else {
+            return $rules;
+        }
+    } else {
+        if (strpos($rules,"mimgtools")!==false) return $rules;
+        if (strpos($rules,$mainRule)===false) return $rules;        
+        return str_replace($mainRule,$new_rules.$mainRule,$rules); //add custom rule
+    }
   }
   function mautacj_query_vars( $vars ) {
     $vars[] = 'mik';

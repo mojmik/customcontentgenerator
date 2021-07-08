@@ -46,6 +46,7 @@ Class MajaxLoader {
         $params["catDesc"]=$this->catDesc;
         $params["relatedRows"]=$this->relatedRows;
         $params["relatedCat"]=$this->relatedCat;
+        $params["fixFilters"]=$this->fixFilters;
         return $params;
     }
     private function loadFields() {
@@ -148,7 +149,7 @@ Class MajaxLoader {
         } else {
             $this->cjBrand=urlDecode(get_query_var("mikbrand"));
             $this->cjCat=get_query_var("mikcat");
-            if (!$this->cjCat && !$this->cjBrand && !$this->aktPage) { 
+            if (!$this->cjCat && !$this->cjBrand && !$this->aktPage && empty($this->fixFilters)) { 
                 $rows=$this->getFrontpage();
             } else {
                 $this->cj=new MajaxAdmin\ComissionJunction(["postType" => $this->customPostType]);
