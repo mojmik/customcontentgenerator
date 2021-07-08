@@ -1,10 +1,10 @@
 <?php
    /*
-   Plugin Name: Custom Ajax Filters
+   Plugin Name: Custom Content Generator
    Plugin URI: https://www.ttj.cz
    description: Adds custom post option, adds custom fields to administration interface v2
   mAuta plugin
-   Version: 1.3c
+   Version: 2.2a
    Author: Mik
    Author URI: https://www.ttj.cz
    License: GPL2

@@ -141,7 +141,7 @@ class CJtools {
             $useMimgTools=Settings::loadSetting("mImgTools-".$this->customPostType,"cptsettings");
             if ($useMimgTools && !empty($r["imageurl"])) {                
                 $id=md5($r["imageurl"]);
-                $fn=CAF_PLUGIN_PATH."/customajaxfilters/majax/majaxwp/mimg/mimgnfo-$id";
+                $fn=MajaxWP\MimgTools::getPath("abs")."mimgnfo-$id";
                 file_put_contents($fn,$r["imageurl"]); 
                 $r["imageurl"] = "/mimgtools/$id/";                            
             }

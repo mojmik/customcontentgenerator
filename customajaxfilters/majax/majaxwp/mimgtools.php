@@ -2,7 +2,21 @@
 namespace CustomAjaxFilters\Majax\MajaxWP;
 
 Class MimgTools {
-	
+	public static function getPath($type="rel",$ver="inplugin") {
+		//mimgmain in uploads dir
+		//$uploadsPath="../../../../../uploads/";		
+
+		//mimgmain in plugin dir
+		//$uploadsPath="./mimg";	
+
+		if ($type=="rel") {
+			if ($ver=="inplugin") return "./mimg";
+			else return "../../../../../uploads/";
+		} else {
+			if ($ver=="inplugin") return CAF_PLUGIN_PATH."/customajaxfilters/majax/majaxwp/mimg/";
+			else return wp_get_upload_dir()["basedir"];
+		}
+	}	
 	public static function handleRequest() {
 		$url=$_SERVER['REQUEST_URI'];
 		$p=strpos($url,"mimgtools/");
@@ -27,7 +41,7 @@ Class MimgTools {
 		//$uploadsPath="../../../../../uploads/";		
 
 		//mimgmain in plugin dir
-		$uploadsPath="./mimg";	
+		$uploadsPath=MimgTools::getPath();	
 
 		if (isset($_REQUEST["debug"])) {
 			if ($handle = opendir($uploadsPath)) {
